@@ -128,10 +128,10 @@ footer{font-size:11px;color:var(--mut);display:flex;justify-content:space-betwee
 
   <div class="sec" id="scores"><h2>Scoreboard</h2></div>
   <div class="score">
-    <div class="card"><span class="note">FOOTBALL · FINAL</span><div class="t"><span class="w">Raiders</span><span class="w">28</span></div><div class="t"><span>Rival HS</span><span>14</span></div></div>
-    <div class="card"><span class="note">VOLLEYBALL · FINAL</span><div class="t"><span class="w">Raiders</span><span class="w">3</span></div><div class="t"><span>Visitors</span><span>1</span></div></div>
-    <div class="card"><span class="note">CROSS COUNTRY</span><div class="t"><span class="w">Raiders</span><span class="w">1st</span></div><div class="t"><span>District</span><span>—</span></div></div>
-    <div class="card"><span class="note">BASKETBALL · SOON</span><div class="t"><span class="w">Raiders</span><span>vs</span></div><div class="t"><span>Tip-off Nov 20</span><span></span></div></div>
+    <div class="card"><span class="note">FOOTBALL · FINAL</span><div class="t"><span class="w">Raiders</span><span class="w">0</span></div><div class="t"><span></span><span>14</span></div></div>
+    <div class="card"><span class="note">VOLLEYBALL · FINAL</span><div class="t"><span class="w">Raiders</span><span class="w">0</span></div><div class="t"><span></span><span>1</span></div></div>
+    <div class="card"><span class="note">CROSS COUNTRY</span><div class="t"><span class="w">Raiders</span><span class="w">0</span></div><div class="t"><span></span><span>—</span></div></div>
+    <div class="card"><span class="note">BASKETBALL · SOON</span><div class="t"><span class="w">Raiders</span><span>vs</span></div><div class="t"><span></span><span></span></div></div>
   </div>
   <div class="note" style="margin-top:6px">Sample news &amp; scores — swap in real ones as they come in.</div>
 
@@ -142,7 +142,7 @@ footer{font-size:11px;color:var(--mut);display:flex;justify-content:space-betwee
 </main>
 
 <main id="credits" class="hidden">
-  <div class="row"><span class="badge">THE CREW</span></div>
+  <div class="row"><span class="badge">The Management</span></div>
   <h1 class="hello">Built by students,<br>for the school.</h1>
   <div class="cred">
     <div class="card"><div class="av">MB</div><h3>Max B.</h3><div class="note" style="margin-top:6px">Co-creator &amp; developer</div></div>
@@ -155,13 +155,11 @@ footer{font-size:11px;color:var(--mut);display:flex;justify-content:space-betwee
 </div>
 
 <script>
-// ===== CONFIG =====
-// Point this at a JSON feed of the school menu. Format: {"2026-11-02":{"breakfast":["..."],"lunch":["..."]}, ...}
-// Browsers block cross-site fetches unless the menu host allows CORS, so you may need a tiny proxy.
+
 const MENU_URL = "";   // e.g. "https://your-proxy.example.com/npsraiders-menu.json"
 const THANKSGIVING = new Date(2026,10,26);
 
-// ===== SAMPLE MENU (fallback, rotates weekly) =====
+
 const BF=[["Cinnamon roll · Yogurt cup · Fruit","Egg & cheese biscuit · Juice","Pancake wrap · Fruit cup","Breakfast pizza · Milk","Yogurt parfait · Warm muffin"],
 ["French toast sticks · Fruit","Sausage & egg croissant","Cereal bar · String cheese · Fruit","Mini waffles · Juice","Biscuit & gravy · Fruit"]];
 const LN=[["Chicken sandwich · Fries · Salad","Pepperoni pizza · Corn · Fruit","Chicken nuggets · Roll · Green beans","Cheeseburger · Baked beans","Fish sticks · Mac & cheese"],
@@ -211,12 +209,9 @@ $("turkP").textContent=left>0?"🦃 "+left+" days until Thanksgiving":left===0?"
 
 // ===== news =====
 const NEWS=[
-{c:"School",e:"🕒",bg:"#7a3410",t:"New bell schedule starts after fall break",p:"Passing periods grow by two minutes, and advisory moves to Wednesday mornings.",a:"Mayor B. · Oct 24"},
-{c:"Sports",e:"🏃",bg:"#3d4a14",t:"Cross country sweeps the district meet",p:"Both the boys and girls teams finished first, with four runners setting personal bests.",a:"James T. · Oct 22"},
-{c:"Clubs",e:"📚",bg:"#6b1d12",t:"Robotics team needs help before regionals",p:"Build nights are Tuesdays and Thursdays in Room 108. No experience required.",a:"Priya S. · Oct 21"},
-{c:"Lunch",e:"🍽️",bg:"#8a5a0a",t:"November menus are live",p:"Breakfast and lunch update automatically each week from the NPS site.",a:"NPS News Desk · Oct 25"},
-{c:"School",e:"🎖️",bg:"#5a2410",t:"Veterans Day celebration",p:"Our annual assembly honors local veterans and the community.",a:"North Elementary · Nov 11"},
-{c:"Sports",e:"🏀",bg:"#2f4a1e",t:"Intramural dodgeball sign-ups close Friday",p:"Teams of six, any grade mix. Games start in early November.",a:"Jose H. · Oct 9"}
+  {c:"School",e:" ",bg:"#3d4a14",t:""
+{c:"School",e:" ",bg:"#3d4a14",t:""
+ {c:"School",e:" ",bg:"#3d4a14",t:""
 ];
 let cat="All";
 function drawNews(){
