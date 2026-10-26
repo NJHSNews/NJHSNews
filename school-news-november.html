@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NPS School News & Spotlights — November Edition</title>
+<style>
+:root{color-scheme:dark;--bg1:#1a0c08;--bg2:#3a1408;--card:#2a130c;--line:#5a2e1a;--tx:#fff3e0;--mut:#d9b99b;--or:#ff8f1f;--gold:#ffc83d;--red:#c0392b;--grn:#7aa33a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--tx);background:linear-gradient(#1a0c08,#4a1b0a 60%,#7a2f0e);background-attachment:fixed;min-height:100vh;overflow-x:hidden}
+h1,h2,h3{font-family:Impact,"Arial Black",sans-serif;letter-spacing:.5px;margin:0}
+#leaves{position:fixed;inset:0;pointer-events:none;z-index:0}
+.moon{position:fixed;top:60px;right:8%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#ffe9b0,#e0b060);box-shadow:0 0 120px 40px rgba(255,170,60,.25);z-index:0}
+.barn{position:fixed;left:3%;bottom:0;width:340px;height:260px;z-index:0;opacity:.9}
+.wrap{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:0 16px 60px}
+.bunting{position:relative;z-index:3;height:34px;background:repeating-linear-gradient(90deg,#c0392b 0 30px,#ff8f1f 30px 60px,#ffc83d 60px 90px,#7aa33a 90px 120px);clip-path:polygon(0 0,100% 0,100% 40%,98% 100%,96% 40%,94% 100%,92% 40%,90% 100%,88% 40%,86% 100%,84% 40%,82% 100%,80% 40%,78% 100%,76% 40%,74% 100%,72% 40%,70% 100%,68% 40%,66% 100%,64% 40%,62% 100%,60% 40%,58% 100%,56% 40%,54% 100%,52% 40%,50% 100%,48% 40%,46% 100%,44% 40%,42% 100%,40% 40%,38% 100%,36% 40%,34% 100%,32% 40%,30% 100%,28% 40%,26% 100%,24% 40%,22% 100%,20% 40%,18% 100%,16% 40%,14% 100%,12% 40%,10% 100%,8% 40%,6% 100%,4% 40%,2% 100%,0 40%)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;flex-wrap:wrap}
+.logo{font-family:Impact,sans-serif;font-size:18px;color:var(--gold)}
+.tabs{display:flex;gap:6px;background:rgba(0,0,0,.35);padding:4px;border-radius:99px;border:1px solid var(--line)}
+.tabs a{color:var(--mut);text-decoration:none;font-size:13px;padding:6px 14px;border-radius:99px;cursor:pointer}
+.tabs a.on{background:var(--or);color:#220d02;font-weight:700}
+.pill{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:var(--mut)}
+.badge{background:var(--gold);color:#2a1200;font-family:Impact,sans-serif;font-size:11px;padding:4px 9px;border-radius:5px;transform:rotate(-2deg);display:inline-block}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 10px}
+.hello{font-size:clamp(28px,6vw,44px);line-height:1.05;margin:10px 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.feast{background:linear-gradient(135deg,#b4440f,#6b1d12);position:relative;overflow:hidden;min-height:190px}
+.feast h2{font-size:30px;margin:8px 0}
+.feast .big{position:absolute;right:14px;top:14px;font-size:84px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.feast p{max-width:70%;font-size:13px;color:#ffe2c2;margin:6px 0}
+.btn{display:inline-block;background:var(--or);color:#220d02;font-weight:800;border:0;border-radius:99px;padding:8px 16px;font-size:13px;cursor:pointer;text-decoration:none}
+.glance div{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.glance div:last-child{border:0}
+.glance span{color:var(--mut)}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:30px 0 12px}
+.sec h2{font-size:22px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:99px;font-size:12px;padding:4px 12px;cursor:pointer}
+.chip.on{background:var(--or);color:#220d02;border-color:var(--or);font-weight:700}
+.news{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.n{padding:0;overflow:hidden;transition:transform .2s}
+.n:hover{transform:translateY(-4px) rotate(-.5deg);border-color:var(--or)}
+.n .im{height:70px;display:flex;align-items:center;justify-content:center;font-size:34px}
+.n .b{padding:12px}
+.tag{font-size:10px;font-weight:800;text-transform:uppercase;padding:2px 7px;border-radius:5px;background:rgba(255,255,255,.12)}
+.n h3{font-size:15px;margin:8px 0 6px;line-height:1.15}
+.n p{font-size:12px;color:var(--mut);margin:0 0 8px}
+.n small{font-size:11px;color:#a98466}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.day{text-align:left;padding:10px}
+.day.today{border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,200,61,.3)}
+.day b{font-family:Impact,sans-serif;font-size:22px;display:block}
+.day small{color:var(--mut);font-size:11px;display:block}
+.meals{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.meals h3{font-size:18px;margin-bottom:4px}
+.note{font-size:11px;color:var(--mut)}
+.today-box{background:rgba(255,143,31,.14);border:1px solid var(--or);border-radius:10px;padding:10px;margin:10px 0;font-size:13px}
+.m{background:rgba(0,0,0,.28);border-radius:8px;padding:8px 10px;margin:6px 0;font-size:12.5px}
+.m.now{border-left:3px solid var(--gold)}
+.m em{display:block;color:var(--or);font-style:normal;font-size:10px;font-weight:800;letter-spacing:.5px}
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.score .card{padding:12px;font-size:13px}
+.score .t{display:flex;justify-content:space-between;margin-top:4px}
+.score .w{color:var(--gold);font-weight:800}
+.news-letter{background:linear-gradient(90deg,#ff8f1f,#ffb347);color:#2a1200;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:30px;border:0}
+.news-letter h3{font-size:22px}
+.news-letter input{border:0;border-radius:99px;padding:10px 16px;min-width:200px}
+.news-letter button{background:#2a1200;color:#fff;border:0;border-radius:99px;padding:10px 18px;font-weight:800;cursor:pointer}
+footer{font-size:11px;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.cred{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px}
+.cred .card{text-align:center;padding:26px}
+.av{width:84px;height:84px;margin:0 auto 12px;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--red));display:flex;align-items:center;justify-content:center;font-family:Impact,sans-serif;font-size:30px;color:#fff;box-shadow:0 0 30px rgba(255,143,31,.45)}
+.hidden{display:none}
+#sec{visibility:hidden;opacity:0;font-size:11px;color:var(--mut);text-decoration:none;transition:opacity .6s}
+#sec.show{visibility:visible;opacity:.6}
+#sec:hover{opacity:1}
+#nlmsg{font-size:12px;font-weight:700;margin-top:4px;display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+@media(max-width:720px){.hero,.meals{grid-template-columns:1fr}.week{grid-template-columns:repeat(2,1fr)}.moon{width:110px;height:110px;right:4%}.feast p{max-width:100%}.feast .big{font-size:52px}.barn{opacity:.5;width:240px}}
+</style>
+</head>
+<body>
+<canvas id="leaves"></canvas>
+<div class="moon"></div>
+<svg class="barn" viewBox="0 0 340 260" aria-hidden="true"><path d="M20 260V120L90 60l70 60v140z" fill="#120704"/><path d="M160 260V150l90-70 90 70v110z" fill="#0d0503"/><rect x="215" y="170" width="50" height="90" fill="#1d0a05"/><rect x="60" y="150" width="26" height="40" rx="3" fill="#ffa63a"/><rect x="110" y="150" width="26" height="40" rx="3" fill="#ffa63a"/></svg>
+<div class="bunting"></div>
+
+<div class="wrap">
+<nav>
+  <div class="logo" id="logo" style="cursor:pointer;user-select:none">🦃 NPS SCHOOL NEWS &amp; SPOTLIGHTS</div>
+  <div class="tabs"><a id="t-home" class="on" href="#">Home</a><a href="#" data-go="news">News</a><a href="#" data-go="meals">Food</a><a href="#" data-go="scores">Sports</a><a id="t-credits" href="#credits">Credits</a></div>
+</nav>
+
+<main id="home">
+  <div class="row"><span class="pill" id="dateP"></span><span class="pill" id="turkP"></span><span class="badge">GRATEFUL SEASON EDITION</span></div>
+  <h1 class="hello">Good morning. Here’s what’s cooking in the halls.</h1>
+
+  <div class="hero">
+    <div class="card feast">
+      <span class="badge">NOVEMBER · THANKSGIVING</span>
+      <h2>Today’s meals,<br>auto-updated</h2>
+      <div class="big">🥧</div>
+      <p id="heroTxt">Loading today’s menu…</p>
+      <a class="btn" data-go="meals" href="#">See breakfast &amp; lunch</a>
+    </div>
+    <div class="card glance">
+      <h3 style="font-size:16px;margin-bottom:6px">At a glance</h3>
+      <div><span>Cal</span><b>District calendar</b></div>
+      <div><span>Break</span><b id="gB">—</b></div>
+      <div><span>Lunch</span><b id="gL">—</b></div>
+      <div><span>Source</span><b id="gS">—</b></div>
+    </div>
+  </div>
+
+  <div class="sec" id="news"><h2>Latest news</h2><div class="chips" id="chips"></div></div>
+  <div class="news" id="newsGrid"></div>
+
+  <div class="sec"><h2>This week</h2><span class="pill" id="rng"></span></div>
+  <div class="week" id="week"></div>
+
+  <div class="sec" id="meals"><h2>Breakfast &amp; lunch</h2><span class="pill" id="mlab"></span></div>
+  <div class="meals">
+    <div class="card"><h3>Breakfast</h3><div class="note">Served daily · sample menu</div><div class="today-box" id="bToday"></div><div id="bList"></div></div>
+    <div class="card"><h3>Lunch</h3><div class="note">Auto-rotates every week</div><div class="today-box" id="lToday"></div><div id="lList"></div></div>
+  </div>
+
+  <div class="sec" id="scores"><h2>Scoreboard</h2></div>
+  <div class="score">
+    <div class="card"><span class="note">FOOTBALL · FINAL</span><div class="t"><span class="w">Raiders</span><span class="w">28</span></div><div class="t"><span>Rival HS</span><span>14</span></div></div>
+    <div class="card"><span class="note">VOLLEYBALL · FINAL</span><div class="t"><span class="w">Raiders</span><span class="w">3</span></div><div class="t"><span>Visitors</span><span>1</span></div></div>
+    <div class="card"><span class="note">CROSS COUNTRY</span><div class="t"><span class="w">Raiders</span><span class="w">1st</span></div><div class="t"><span>District</span><span>—</span></div></div>
+    <div class="card"><span class="note">BASKETBALL · SOON</span><div class="t"><span class="w">Raiders</span><span>vs</span></div><div class="t"><span>Tip-off Nov 20</span><span></span></div></div>
+  </div>
+  <div class="note" style="margin-top:6px">Sample news &amp; scores — swap in real ones as they come in.</div>
+
+  <div class="card news-letter">
+    <div><h3>Our Friday newsletter</h3><div style="font-size:12px">One email every Friday with the week’s top stories, next week’s events and the lunch menu.</div></div>
+    <div><input id="em" type="email" placeholder="Your email address" autocomplete="email"><input class="hp" id="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"> <button id="sub">Subscribe</button><span id="nlmsg"></span></div>
+  </div>
+</main>
+
+<main id="credits" class="hidden">
+  <div class="row"><span class="badge">THE CREW</span></div>
+  <h1 class="hello">Built by students,<br>for the school.</h1>
+  <div class="cred">
+    <div class="card"><div class="av">MB</div><h3>Max B.</h3><div class="note" style="margin-top:6px">Co-creator &amp; developer</div></div>
+    <div class="card"><div class="av">JB</div><h3>Jaiden B.</h3><div class="note" style="margin-top:6px">Co-creator &amp; developer</div></div>
+  </div>
+  <div class="card" style="margin-top:14px;font-size:13px;color:var(--mut)">More credits coming soon — photographers, writers and the whole news team. Happy Thanksgiving! 🍂</div>
+</main>
+
+<footer><span>© 2026 NPS School News · Written by Max B. &amp; Jaiden B.</span><span>Menus from NPS · Child nutrition · not an official district site <a id="sec" href="newsletter/admin.php" tabindex="-1" title="Staff">🔒</a></span></footer>
+</div>
+
+<script>
+// ===== CONFIG =====
+// Point this at a JSON feed of the school menu. Format: {"2026-11-02":{"breakfast":["..."],"lunch":["..."]}, ...}
+// Browsers block cross-site fetches unless the menu host allows CORS, so you may need a tiny proxy.
+const MENU_URL = "";   // e.g. "https://your-proxy.example.com/npsraiders-menu.json"
+const THANKSGIVING = new Date(2026,10,26);
+
+// ===== SAMPLE MENU (fallback, rotates weekly) =====
+const BF=[["Cinnamon roll · Yogurt cup · Fruit","Egg & cheese biscuit · Juice","Pancake wrap · Fruit cup","Breakfast pizza · Milk","Yogurt parfait · Warm muffin"],
+["French toast sticks · Fruit","Sausage & egg croissant","Cereal bar · String cheese · Fruit","Mini waffles · Juice","Biscuit & gravy · Fruit"]];
+const LN=[["Chicken sandwich · Fries · Salad","Pepperoni pizza · Corn · Fruit","Chicken nuggets · Roll · Green beans","Cheeseburger · Baked beans","Fish sticks · Mac & cheese"],
+["Spaghetti · Garlic bread · Salad","Tacos · Rice · Pico","Chicken tenders · Mashed potatoes","Pulled pork sandwich · Slaw","Pizza dippers · Marinara · Fruit"]];
+const FEAST={"2026-11-23":["Roast turkey · Stuffing · Cranberry · Roll"],"2026-11-24":["Turkey & gravy · Mashed potatoes · Corn · Pumpkin cookie"],"2026-11-25":["Thanksgiving lunch! Turkey · Sweet potatoes · Green beans · Pie"]};
+
+const DN=["MON","TUE","WED","THU","FRI"],iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const $=id=>document.getElementById(id);
+function monday(d){const x=new Date(d);const g=x.getDay();x.setDate(x.getDate()-(g===0?6:g-1));x.setHours(0,0,0,0);return x}
+function weekNo(d){return Math.floor((monday(d)-new Date(2026,0,5))/604800000)}
+function closed(d){return iso(d)==="2026-11-26"||iso(d)==="2026-11-27"}
+
+function menuFor(d,feed){
+  const k=iso(d);
+  if(feed&&feed[k])return{b:feed[k].breakfast||[],l:feed[k].lunch||[],src:"NPS site (live)"};
+  if(closed(d))return{b:["SCHOOL CLOSED — Happy Thanksgiving"],l:["SCHOOL CLOSED — Happy Thanksgiving"],src:"Sample"};
+  const di=Math.min(Math.max(d.getDay()-1,0),4),wi=((weekNo(d)%2)+2)%2;
+  return{b:[BF[wi][di]],l:FEAST[k]||[LN[wi][di]],src:"Sample rotation"};
+}
+
+async function loadFeed(){
+  if(!MENU_URL)return null;
+  try{const r=await fetch(MENU_URL,{cache:"no-store"});if(!r.ok)throw 0;return await r.json()}catch(e){return null}
+}
+
+function render(feed){
+  const now=new Date(),mon=monday(now),days=[...Array(5)].map((_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d});
+  const wd=now.getDay();const showDay=(wd===0||wd===6)?days[0]:now;
+  const t=menuFor(showDay,feed);
+  $("heroTxt").textContent=((wd===0||wd===6)?"Monday’s menu — ":"")+"Breakfast: "+t.b.join(", ")+" · Lunch: "+t.l.join(", ");
+  $("gB").textContent=t.b[0].split("·")[0].trim();$("gL").textContent=t.l[0].split("·")[0].trim();$("gS").textContent=t.src;
+  $("rng").textContent=days[0].toLocaleDateString("en-US",{month:"short",day:"numeric"})+" – "+days[4].toLocaleDateString("en-US",{month:"short",day:"numeric"});
+  $("mlab").textContent=days[0].toLocaleDateString("en-US",{month:"long",year:"numeric"})+" · by day";
+  $("week").innerHTML=days.map((d,i)=>{const m=menuFor(d,feed);return `<div class="card day ${iso(d)===iso(now)?"today":""}"><small>${DN[i]}</small><b>${d.getDate()}</b><small>${m.l[0].split("·")[0].trim()}</small></div>`}).join("");
+  $("bToday").innerHTML="<b>"+(iso(showDay)===iso(now)?"Today":DN[(showDay.getDay()+6)%7])+"</b><br>"+t.b.join("<br>");
+  $("lToday").innerHTML="<b>"+(iso(showDay)===iso(now)?"Today":DN[(showDay.getDay()+6)%7])+"</b><br>"+t.l.join("<br>");
+  const list=k=>days.map((d,i)=>{const m=menuFor(d,feed);return `<div class="m ${iso(d)===iso(now)?"now":""}"><em>${DN[i]} ${d.getMonth()+1}/${d.getDate()}</em>${m[k].join(" · ")}</div>`}).join("");
+  $("bList").innerHTML=list("b");$("lList").innerHTML=list("l");
+}
+render(null);loadFeed().then(f=>{if(f)render(f)});
+setInterval(()=>loadFeed().then(render),30*60*1000);   // refresh every 30 min
+
+// ===== header pills =====
+$("dateP").textContent="📅 "+new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"});
+const left=Math.ceil((THANKSGIVING-new Date())/864e5);
+$("turkP").textContent=left>0?"🦃 "+left+" days until Thanksgiving":left===0?"🦃 Happy Thanksgiving!":"🍂 Thanksgiving is behind us";
+
+// ===== news =====
+const NEWS=[
+{c:"School",e:"🕒",bg:"#7a3410",t:"New bell schedule starts after fall break",p:"Passing periods grow by two minutes, and advisory moves to Wednesday mornings.",a:"Mayor B. · Oct 24"},
+{c:"Sports",e:"🏃",bg:"#3d4a14",t:"Cross country sweeps the district meet",p:"Both the boys and girls teams finished first, with four runners setting personal bests.",a:"James T. · Oct 22"},
+{c:"Clubs",e:"📚",bg:"#6b1d12",t:"Robotics team needs help before regionals",p:"Build nights are Tuesdays and Thursdays in Room 108. No experience required.",a:"Priya S. · Oct 21"},
+{c:"Lunch",e:"🍽️",bg:"#8a5a0a",t:"November menus are live",p:"Breakfast and lunch update automatically each week from the NPS site.",a:"NPS News Desk · Oct 25"},
+{c:"School",e:"🎖️",bg:"#5a2410",t:"Veterans Day celebration",p:"Our annual assembly honors local veterans and the community.",a:"North Elementary · Nov 11"},
+{c:"Sports",e:"🏀",bg:"#2f4a1e",t:"Intramural dodgeball sign-ups close Friday",p:"Teams of six, any grade mix. Games start in early November.",a:"Jose H. · Oct 9"}
+];
+let cat="All";
+function drawNews(){
+  $("chips").innerHTML=["All","School","Sports","Clubs","Lunch"].map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${c}">${c}</button>`).join("");
+  $("newsGrid").innerHTML=NEWS.filter(n=>cat==="All"||n.c===cat).map(n=>`<article class="card n"><div class="im" style="background:${n.bg}">${n.e}</div><div class="b"><span class="tag">${n.c}</span><h3>${n.t}</h3><p>${n.p}</p><small>${n.a}</small></div></article>`).join("");
+}
+$("chips").addEventListener("click",e=>{if(e.target.dataset.c){cat=e.target.dataset.c;drawNews()}});
+drawNews();
+
+// ===== pages / nav =====
+function route(){
+  const c=location.hash==="#credits";
+  $("credits").classList.toggle("hidden",!c);$("home").classList.toggle("hidden",c);
+  $("t-credits").classList.toggle("on",c);$("t-home").classList.toggle("on",!c);
+  if(c)scrollTo(0,0);
+}
+addEventListener("hashchange",route);route();
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-go]");
+  if(a){e.preventDefault();if(location.hash==="#credits")location.hash="";route();setTimeout(()=>$(a.dataset.go).scrollIntoView({behavior:"smooth"}),30)}
+  if(e.target.id==="t-home"){e.preventDefault();location.hash="";route()}
+});
+// ===== newsletter signup (talks to newsletter/subscribe.php on your PHP host) =====
+$("sub").onclick=async()=>{
+  const m=$("nlmsg"),b=$("sub"),em=$("em").value.trim();
+  if(!/^\S+@\S+\.\S+$/.test(em)){m.textContent="Enter a valid email.";return}
+  b.disabled=true;m.textContent="Signing you up…";
+  try{
+    const r=await fetch("newsletter/subscribe.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,website:$("hp").value})});
+    const j=await r.json();m.textContent=j.msg;if(j.ok)$("em").value="";
+  }catch(e){m.textContent="Signups only work on the live server (needs the PHP backend)."}
+  b.disabled=false;
+};
+
+// ===== secret admin button: click the logo 5 times fast =====
+let lc=0,lt;
+$("logo").addEventListener("click",()=>{
+  lc++;clearTimeout(lt);lt=setTimeout(()=>lc=0,2000);
+  if(lc>=5){lc=0;const s=$("sec");s.classList.add("show");s.tabIndex=0;setTimeout(()=>{s.classList.remove("show");s.tabIndex=-1},20000)}
+});
+
+// ===== falling leaves =====
+const cv=$("leaves"),cx=cv.getContext("2d");let W,H;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener("resize",rs);
+const cols=["#c0392b","#ff8f1f","#ffc83d","#a0522d","#7aa33a"];
+const L=[...Array(38)].map(()=>({x:Math.random()*W,y:Math.random()*H,s:6+Math.random()*9,v:.4+Math.random()*1.1,r:Math.random()*6,w:Math.random()*2,c:cols[Math.floor(Math.random()*5)]}));
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches)(function f(){
+  cx.clearRect(0,0,W,H);
+  for(const l of L){l.y+=l.v;l.r+=.02;l.w+=.02;l.x+=Math.sin(l.w)*.8;if(l.y>H+20){l.y=-20;l.x=Math.random()*W}
+    cx.save();cx.translate(l.x,l.y);cx.rotate(l.r);cx.fillStyle=l.c;cx.globalAlpha=.8;cx.beginPath();cx.ellipse(0,0,l.s,l.s/2,0,0,7);cx.fill();cx.restore()}
+  requestAnimationFrame(f)})();
+</script>
+</body>
+</html>
