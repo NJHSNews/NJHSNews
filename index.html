@@ -52,12 +52,7 @@ $("turkP").textContent=left>0?"🦃 "+left+" days until Thanksgiving":left===0?"
 
 // ===== news =====
 const NEWS=[
-{c:"School",e:"🕒",bg:"#7a3410",t:"New bell schedule starts after fall break",p:"Passing periods grow by two minutes, and advisory moves to Wednesday mornings.",a:"Mayor B. · Oct 24"},
-{c:"Sports",e:"🏃",bg:"#3d4a14",t:"Cross country sweeps the district meet",p:"Both the boys and girls teams finished first, with four runners setting personal bests.",a:"James T. · Oct 22"},
-{c:"Clubs",e:"📚",bg:"#6b1d12",t:"Robotics team needs help before regionals",p:"Build nights are Tuesdays and Thursdays in Room 108. No experience required.",a:"Priya S. · Oct 21"},
-{c:"Lunch",e:"🍽️",bg:"#8a5a0a",t:"November menus are live",p:"Breakfast and lunch update automatically each week from the NPS site.",a:"NPS News Desk · Oct 25"},
-{c:"School",e:"🎖️",bg:"#5a2410",t:"Veterans Day celebration",p:"Our annual assembly honors local veterans and the community.",a:"North Elementary · Nov 11"},
-{c:"Sports",e:"🏀",bg:"#2f4a1e",t:"Intramural dodgeball sign-ups close Friday",p:"Teams of six, any grade mix. Games start in early November.",a:"Jose H. · Oct 9"}];
+{c:"School",e:"",bg:"#7a3410",t:"Veterans Day celebration.",p:"The NJHS and NHS will be going to St, Benards Auditorium and helping out the veterans of Jonesboro Arkansas.",a:"Max B. · Oct 24"}];
 let cat="All";
 function drawNews(){
   $("chips").innerHTML=["All","School","Sports","Clubs","Lunch"].map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${c}">${c}</button>`).join("");
@@ -80,24 +75,36 @@ document.addEventListener("click",e=>{
   if(e.target.id==="t-home"){e.preventDefault();location.hash="";route()}
 });
 
-// ===== newsletter signup (talks to newsletter/subscribe.php on your PHP host) =====
-$("sub").onclick=async()=>{
+// ===== newsletter signup (the PHP endpoint must send the confirmation email) =====
+async function subscribe(){
   const m=$("nlmsg"),b=$("sub"),em=$("em").value.trim();
-  if(!/^\S+@\S+\.\S+$/.test(em)){m.textContent="Enter a valid email.";return}
+  if(!/^\S+@\S+\.\S+$/.test(em)){m.textContent="Enter a valid email.";$("em").focus();return}
+  if(b.disabled)return;
   b.disabled=true;m.textContent="Signing you up…";
   try{
-    const r=await fetch("newsletter/subscribe.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,website:$("hp").value})});
-    const j=await r.json();m.textContent=j.msg;if(j.ok)$("em").value="";
-  }catch(e){m.textContent="Signups only work on the live server (needs the PHP backend)."}
-  b.disabled=false;
-};
+    const r=await fetch("newsletter/subscribe.php",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},credentials:"same-origin",body:JSON.stringify({email:em,website:$("hp").value})});
+    const j=await r.json();
+    if(!r.ok||!j.ok)throw new Error(j.msg||"Could not complete signup.");
+    m.textContent=j.msg||"You're subscribed! Check your inbox for a confirmation message.";$("em").value="";
+  }catch(e){m.textContent=e.message||"Signups require the live site and its newsletter email backend."}
+  finally{b.disabled=false}
+}
+$("sub").addEventListener("click",subscribe);
+$("em").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();subscribe()}});
 
-// ===== secret admin button: click the logo 5 times fast =====
-let lc=0,lt;
-$("logo").addEventListener("click",()=>{
-  lc++;clearTimeout(lt);lt=setTimeout(()=>lc=0,2000);
-  if(lc>=5){lc=0;const s=$("sec");s.classList.add("show");s.tabIndex=0;setTimeout(()=>{s.classList.remove("show");s.tabIndex=-1},20000)}
-});
+// ===== secret page verification code =====
+const codeBox=document.createElement("div");
+codeBox.style.marginTop="8px";
+codeBox.innerHTML='<label for="secretCode" style="font-size:12px">Secret page verification code</label><br><input id="secretCode" type="text" placeholder="Enter code" autocomplete="off"><button id="verifyCode" type="button" style="margin-left:5px">Verify</button><span id="codeMsg" role="status" style="display:block;font-size:12px;margin-top:4px"></span>';
+$("nlmsg").insertAdjacentElement("afterend",codeBox);
+function verifySecretCode(){
+  const s=$("sec"),msg=$("codeMsg");
+  if($("secretCode").value.trim()==="Triple T"){
+    s.classList.add("show");s.tabIndex=0;msg.textContent="Code accepted. Secret page link unlocked.";
+  }else msg.textContent="Incorrect code.";
+}
+$("verifyCode").addEventListener("click",verifySecretCode);
+$("secretCode").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();verifySecretCode()}});
 
 // ===== falling leaves =====
 const cv=$("leaves"),cx=cv.getContext("2d");let W,H;
@@ -110,4 +117,5 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches)(function f(){
     cx.save();cx.translate(l.x,l.y);cx.rotate(l.r);cx.fillStyle=l.c;cx.globalAlpha=.8;cx.beginPath();cx.ellipse(0,0,l.s,l.s/2,0,0,7);cx.fill();cx.restore()}
   requestAnimationFrame(f)
 })();
-</script></body></html>
+</script></body></html> 
+
