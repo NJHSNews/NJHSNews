@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>NPS School News & Spotlights</title><style>
+:root{color-scheme:dark;--bg:#120a07;--panel:#1d1210;--line:#3d2518;--tx:#f6e9d8;--mut:#a68a74;--a:#e8741f;--b:#f2b134;--g:#9aaa3b;--r:#b3382c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:radial-gradient(1000px 600px at 85% -10%,#4a1c0b,transparent 70%),linear-gradient(#120a07,#1c0e08 70%,#2a1209);background-attachment:fixed;color:var(--tx);font-family:Georgia,"Segoe UI",system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+#fx{position:fixed;inset:0;z-index:0}
+.glow{position:fixed;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(242,177,52,.16),transparent 70%);top:-160px;right:-120px;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:0 18px 110px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;margin:12px 0 0;position:sticky;top:calc(8px + env(safe-area-inset-top,0px));z-index:5;background:rgba(29,18,16,.82);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.brand{display:flex;align-items:center;gap:10px}.mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--r));display:grid;place-items:center;font-size:19px;box-shadow:0 0 18px rgba(232,116,31,.5);animation:sway 4s ease-in-out infinite}@keyframes sway{50%{transform:rotate(-8deg)}}
+.logo{font:800 17px/1 Impact,"Arial Black",sans-serif;letter-spacing:2px;background:linear-gradient(90deg,var(--b),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}.logo small{display:block;font:600 9px system-ui;letter-spacing:3px;color:var(--mut);-webkit-text-fill-color:var(--mut);margin-top:4px}
+.tabs{display:flex;gap:2px;flex-wrap:wrap}.tabs a{color:var(--mut);text-decoration:none;font:600 13px system-ui;padding:7px 12px;border-radius:9px;transition:.2s}
+.tabs a:hover{color:var(--tx);background:rgba(255,255,255,.05)}.tabs a.on{background:var(--a);color:#1b0a02}
+#clock{font:600 12px ui-monospace,Consolas,monospace;color:var(--b);border:1px solid var(--line);border-radius:99px;padding:5px 11px;background:rgba(0,0,0,.3);white-space:nowrap}#clock s{text-decoration:none;color:var(--mut)}
+.page{display:none;animation:in .5s}.page.on{display:block}@keyframes in{from{opacity:0;transform:translateY(14px)}}
+h1{font-size:clamp(32px,7vw,58px);line-height:1.05;margin:34px 0 10px;letter-spacing:-1px}h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cur{display:inline-block;width:3px;height:.9em;background:var(--a);margin-left:4px;vertical-align:-4px;animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+.sub{color:var(--mut);max-width:560px;margin:0 0 22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;transition:transform .15s,border-color .2s;transform-style:preserve-3d}.card:hover{border-color:var(--a)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}.two{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.tag{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--b);border:1px solid var(--line);padding:2px 8px;border-radius:99px}
+h2{font-size:22px;margin:36px 0 14px}h3{margin:10px 0 6px;font-size:17px}.m{color:var(--mut);font-size:13px}
+.stat{font-size:30px;font-weight:800;color:var(--a)}
+.rv{opacity:0;transform:translateY(24px);transition:.6s}.rv.v{opacity:1;transform:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.chip{background:none;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:6px 13px;cursor:pointer;font-size:13px}.chip.on{background:var(--a);border-color:var(--a);color:#160800;font-weight:700}
+.days{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.item{border-left:3px solid var(--line);padding:8px 12px;margin:8px 0;background:rgba(255,255,255,.02);border-radius:0 8px 8px 0;font-size:14px}.item.now{border-color:var(--g)}.item b{display:block;font-size:11px;color:var(--a);letter-spacing:1px}
+.credits{display:grid;gap:12px;margin-top:20px}.cr{display:flex;justify-content:space-between;align-items:center;padding:20px 24px}.cr h3{margin:0;font-size:22px}.cr span{color:var(--a);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:12px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<canvas id="fx"></canvas><div class="glow"></div>
+<div class="wrap">
+<nav><div class="brand"><div class="mark">🍁</div><div class="logo">NPS SCHOOL NEWS<small>SPOTLIGHTS · NOVEMBER 2026</small></div></div>
+<div class="tabs"><a href="#home" data-p="home">Home</a><a href="#news" data-p="news">News</a><a href="#lunch" data-p="lunch">Lunch</a><a href="#newsletter" data-p="newsletter">Newsletter</a><a href="#credits" data-p="credits">Credits</a></div><div id="clock"><span id="hm">--:--</span><s id="ss">:00</s></div></nav>
+
+<section class="page" id="home">
+<h1><span id="ty"></span><span class="cur"></span></h1>
+<p class="sub">Student-made news, spotlights and daily Nettleton menus. Pour a cider, it’s November. 🍂</p>
+<div class="grid">
+<div class="card tilt"><span class="tag">Today</span><h3 id="hl">—</h3><div class="m" id="hb">—</div></div>
+<div class="card tilt"><span class="tag">Countdown</span><div class="stat" id="cd">0</div><div class="m">days until Thanksgiving break</div></div>
+<div class="card tilt"><span class="tag">Latest</span><h3 id="hn">—</h3><div class="m"><a href="#news" style="color:var(--b)">Read more →</a></div></div></div>
+<h2 class="rv">This week’s lunches</h2><div class="grid" id="wk"></div></section>
+
+<section class="page" id="news"><h1>Latest <em>news</em></h1><div class="chips" id="chips"></div><div class="grid" id="ng"></div></section>
+
+<section class="page" id="lunch"><h1>November <em>menu</em></h1><p class="sub">Nettleton menus for November 2026. Milk, juice and fruit variety offered daily. Adult price $3.25. School is closed Nov 26–27.</p>
+<div class="days" id="dl"></div><div class="two"><div class="card"><h3>Breakfast</h3><div id="bf"></div></div><div class="card"><h3>Lunch</h3><div id="lu"></div></div></div></section>
+
+<section class="page" id="newsletter"><h1>The <em>newsletter</em></h1><p class="sub">This week’s issue, right here on the site. Check back every Friday for a fresh one.</p>
+<div class="card rv"><span class="tag">Issue · November 2026</span><h3>Top story</h3><p class="m" id="nt">—</p></div>
+<h2 class="rv">Coming up</h2><div class="grid"><div class="card rv"><b>Nov 11</b><div class="m">Veterans Day celebration at St. Bernard’s Auditorium</div></div><div class="card rv"><b>Nov 20</b><div class="m">Basketball tip-off for the Raiders</div></div><div class="card rv"><b>Nov 23–25</b><div class="m">Thanksgiving feast lunches</div></div><div class="card rv"><b>Nov 26–27</b><div class="m">No school, enjoy the break</div></div></div>
+<h2 class="rv">Lunch highlights</h2><div class="card rv" id="nl"></div></section>
+
+<section class="page" id="credits"><h1>Built by <em>students</em></h1><p class="sub">For the school, by the school.</p>
+<div class="credits"><div class="card cr tilt"><h3>Max B.</h3><span>Co-creator &amp; developer</span></div><div class="card cr tilt"><h3>Jaiden B.</h3><span>Co-creator &amp; developer</span></div></div>
+<p class="m" style="margin-top:16px">More credits coming soon: photographers, writers and the whole news team.</p></section>
+
+<footer>© 2026 NPS School News · Written by Max B. &amp; Jaiden B. · Not an official district site</footer></div>
+<script>
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,"0");
+// ===== NOVEMBER MENU (edit here to match the official menu) =====
+const BFW=[["Cereal · Cereal bar · Yogurt cup · Graham cracker","Sausage biscuit · Pop-Tart","Warm pastry · Yogurt parfait","National Donut Day: Glazed donuts","Pancake on a stick w/ syrup · Cereal · Yogurt cup · Graham"],
+["Cereal · Cereal bar · Yogurt cup · Graham cracker","Sausage biscuit · Pop-Tart","Warm pastry · Yogurt parfait","Breakfast sandwich · Muffin variety","Breakfast pizza · Cereal · Yogurt cup · Graham"],
+["Cereal · Cereal bar · Yogurt cup · Graham cracker","Sausage biscuit · Pop-Tart","Warm pastry · Yogurt parfait","Breakfast sandwich · Muffin variety","Pancake on a stick w/ syrup · Cereal · Yogurt cup · Graham"]];
+const LU=[["Breaded chicken sandwich · Chips w/ salsa · Baked beans · Burger bar","Nachos w/ ground beef · Chicken & cheese quesadilla · Pinto beans · Salsa · Taco bar","Breaded chicken tenders · Steamed rice · Gravy · Broccoli · Fresh veggies · Cornbread","Pizza variety · Green beans · Seasoned carrots · Dessert","Domino’s pizza · Fries · Marinara sauce"],
+["Chicken strip sandwich · Fries · Baked beans · Slaw","Taco salad · Chips & salsa","Beef soft taco · Salsa · Pinto beans · Taco bar","Hamburger steak w/ gravy · Mashed potatoes · Green beans · Roll","General Tso’s chicken · Fried rice · Steamed broccoli · Carrots"],
+["Crispito w/ chips · Mexican corn · Spanish rice","Chicken spaghetti w/ breadsticks · Seasoned corn · Garden salad","Thanksgiving dinner: Drumstick · Dressing · Mashed potatoes · Gravy · Cranberry sauce · Roll","Cheeseburger · Fries · Baked beans · Burger bar","Pizza variety · Mozzarella bites · Seasoned corn · Marinara"]];
+const NEWS=[{c:"School",t:"Veterans Day celebration",p:"The NJHS and NHS will be going to St. Bernard’s Auditorium to help out the veterans of Jonesboro, Arkansas.",a:"Max B. · Oct 24"}];
+const START=new Date(2026,10,2);
+const iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const DN=["Mon","Tue","Wed","Thu","Fri"];
+function mon(d){const x=new Date(d);x.setDate(x.getDate()-((x.getDay()+6)%7));x.setHours(0,0,0,0);return x}
+function menu(d){const w=Math.round((mon(d)-START)/6048e5),i=(d.getDay()+6)%7;
+ if(d.getMonth()!==10||i>4)return{b:"No school",l:"No school"};
+ if(d.getDate()===26||d.getDate()===27)return{b:"School closed",l:"School closed · Happy Thanksgiving"};
+ if(w<0||w>2)return{b:"Menu not posted yet",l:"Menu not posted yet"};
+ return{b:BFW[w][i],l:LU[w][i]}}
+const now=new Date(),wd=now.getDay(),base=(wd===0||wd===6)?new Date(now.getTime()+((wd===0?1:2)*864e5)):now;
+// ===== typewriter =====
+const line="Good morning. Here’s what’s cooking in the halls.";let ti=0;
+(function t(){$("ty").textContent=line.slice(0,ti++);if(ti<=line.length)setTimeout(t,35)})();
+// ===== home =====
+const m0=menu(base);$("hl").textContent=m0.l;$("hb").textContent="Breakfast: "+m0.b+((wd===0||wd===6)?" (Monday’s menu)":"");
+$("hn").textContent=NEWS[0].t;$("nt").textContent=NEWS[0].p;
+const left=Math.max(0,Math.ceil((new Date(2026,10,26)-now)/864e5));
+(function c(){let n=0;const s=setInterval(()=>{n+=Math.max(1,Math.ceil(left/20));if(n>=left){n=left;clearInterval(s)}$("cd").textContent=n},40)})();
+const wm=mon(base),days=[...Array(5)].map((_,i)=>{const d=new Date(wm);d.setDate(wm.getDate()+i);return d});
+$("wk").innerHTML=days.map((d,i)=>`<div class="card tilt rv"><span class="tag">${DN[i]} ${d.getMonth()+1}/${d.getDate()}</span><div class="m" style="margin-top:10px;color:var(--tx)">${menu(d).l}</div></div>`).join("");
+// ===== news =====
+let cat="All";function dn(){$("chips").innerHTML=["All","School","Sports","Clubs","Lunch"].map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${c}">${c}</button>`).join("");
+ const f=NEWS.filter(n=>cat==="All"||n.c===cat);$("ng").innerHTML=f.length?f.map(n=>`<article class="card tilt"><span class="tag">${n.c}</span><h3>${n.t}</h3><p class="m">${n.p}</p><small class="m">${n.a}</small></article>`).join(""):'<p class="m">Nothing here yet. Check back soon!</p>'}
+$("chips").onclick=e=>{if(e.target.dataset.c){cat=e.target.dataset.c;dn()}};dn();
+// ===== lunch page =====
+let sel=iso(base);const all=[];for(let d=new Date(2026,10,2);d.getMonth()===10;d.setDate(d.getDate()+1))if(d.getDay()%6)all.push(new Date(d));
+function dl(){$("dl").innerHTML=all.map(d=>`<button class="chip ${iso(d)===sel?"on":""}" data-d="${iso(d)}">${DN[(d.getDay()+6)%7]} ${d.getDate()}</button>`).join("");
+ const d=all.find(x=>iso(x)===sel)||all[0],m=menu(d);
+ $("bf").innerHTML=`<div class="item now"><b>${d.toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric"}).toUpperCase()}</b>${m.b}</div>`;
+ $("lu").innerHTML=`<div class="item now"><b>${d.toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric"}).toUpperCase()}</b>${m.l}</div>`}
+$("dl").onclick=e=>{if(e.target.dataset.d){sel=e.target.dataset.d;dl()}};
+if(!all.some(d=>iso(d)===sel))sel=iso(all[0]);dl();
+$("nl").innerHTML=days.map((d,i)=>`<div class="item"><b>${DN[i]} ${d.getMonth()+1}/${d.getDate()}</b>${menu(d).l}</div>`).join("");
+// ===== clock =====
+(function k(){const d=new Date();let h=d.getHours()%12||12;$("hm").textContent=h+":"+pad(d.getMinutes())+(d.getHours()<12?" AM":" PM");$("ss").textContent=":"+pad(d.getSeconds());
+setTimeout(k,1000)})();
+// ===== routing =====
+function route(){const p=location.hash.slice(1);const id=["home","news","lunch","newsletter","credits"].includes(p)?p:"home";
+ document.querySelectorAll(".page").forEach(s=>s.classList.toggle("on",s.id===id));
+ document.querySelectorAll(".tabs a").forEach(a=>a.classList.toggle("on",a.dataset.p===id));scrollTo(0,0);setTimeout(rv,60)}
+addEventListener("hashchange",route);
+// ===== reveal + tilt =====
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("v");io.unobserve(e.target)}}),{threshold:.1});
+function rv(){document.querySelectorAll(".page.on .rv:not(.v)").forEach(e=>io.observe(e))}
+document.addEventListener("mousemove",e=>{const c=e.target.closest&&e.target.closest(".tilt");document.querySelectorAll(".tilt").forEach(x=>{if(x!==c)x.style.transform=""});
+ if(c){const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateY(${px*10}deg) rotateX(${-py*10}deg) translateY(-3px)`}});
+route();
+// ===== falling leaves (react to mouse) =====
+const cv=$("fx"),cx=cv.getContext("2d");let W,H,mx=-999,my=-999;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener("resize",rs);
+addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
+const cols=["#b3382c","#e8741f","#f2b134","#8a4b22","#9aaa3b"];
+const P=[...Array(46)].map(()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:5+Math.random()*9,v:.4+Math.random()*1.1,r:Math.random()*6,w:Math.random()*6,c:cols[Math.random()*5|0]}));
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches)(function f(){cx.clearRect(0,0,W,H);
+ for(const p of P){p.y+=p.v;p.r+=.025;p.w+=.02;p.x+=Math.sin(p.w)*.9;const dx=p.x-mx,dy=p.y-my;if(dx*dx+dy*dy<16000){p.x+=dx*.05;p.y+=dy*.03}
+  if(p.y>H+20){p.y=-20;p.x=Math.random()*W}
+  cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=.75;cx.fillStyle=p.c;cx.beginPath();cx.ellipse(0,0,p.s,p.s/2,0,0,7);cx.fill();cx.strokeStyle="rgba(0,0,0,.35)";cx.beginPath();cx.moveTo(-p.s,0);cx.lineTo(p.s,0);cx.stroke();cx.restore()}
+ requestAnimationFrame(f)})();
+</script></body></html>
